@@ -1,37 +1,43 @@
 class Plant:
-    def __init__(self, name: str, height: float, age: int):
-        self.name = name
-        self.height = height
-        self.initial_height = height
-        self.age = age
+    def __init__(self, name: str, height: float, age: int) -> None:
+        self.name: str = name
+        self.height: float = float(height)
+        self._age: int = age
 
-    def show(self):
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+    def show(self, prefix: str = "") -> None:
+        print(
+            f"{prefix}{self.name}: {self.height:.1f}cm, "
+            f"{self._age} days old"
+        )
 
-    def grow(self):
-        if (self.name == "Rose"):
-            growth_rate = 0.8
-        elif (self.name == "Sunflower"):
+    def grow(self) -> None:
+        if self.name == "Rose":
+            growth_rate: float = 0.8
+        elif self.name == "Sunflower":
             growth_rate = 2.0
-        elif (self.name == "Cactus"):
+        elif self.name == "Cactus":
             growth_rate = 0.2
+        elif self.name == "Oak":
+            growth_rate = 0.5
+        elif self.name == "Fern":
+            growth_rate = 0.4
         else:
             growth_rate = 0.5
         self.height = round(self.height + growth_rate, 2)
-        self.age += 1
 
-    def weekly_growth(self):
-        return (round(self.height - self.initial_height, 2))
+    def age(self, days: int = 1) -> None:
+        self._age += days
 
 
-plant1: Plant = Plant("Rose", 25.0, 30)
-plant2: Plant = Plant("Sunflower", 80.0, 45)
-plant3: Plant = Plant("Cactus", 15.0, 120)
-print("=== Garden Plant Growth ===")
-plant1.show()
-for day in range(1, 8):
-    print(f"=== Day {day} ===")
-    plant1.grow()
-    plant1.show()
+if __name__ == "__main__":
+    plants: list[Plant] = [
+        Plant("Rose", 25.0, 30),
+        Plant("Oak", 200.0, 365),
+        Plant("Cactus", 5.0, 90),
+        Plant("Sunflower", 80.0, 45),
+        Plant("Fern", 15.0, 120),
+    ]
 
-print(f"Growth this week: {plant1.weekly_growth()}cm")
+    print("=== Plant Factory Output ===")
+    for plant in plants:
+        plant.show("Created: ")

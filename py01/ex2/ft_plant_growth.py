@@ -1,37 +1,40 @@
 class Plant:
-    def __init__(self, name: str, height: float, age: int):
-        self.name = name
-        self.height = height
-        self.initial_height = height
-        self.age = age
+    def __init__(self, name: str, height: float, age: int) -> None:
+        self.name: str = name
+        self.height: float = float(height)
+        self.initial_height: float = float(height)
+        self._age: int = age
 
-    def show(self):
-        print(f"{self.name}: {self.height}cm, {self.age} days old")
+    def show(self) -> None:
+        print(f"{self.name}: {self.height:.1f}cm, {self._age} days old")
 
-    def grow(self):
-        if (self.name == "Rose"):
-            growth_rate = 0.8
-        elif (self.name == "Sunflower"):
+    def grow(self) -> None:
+        if self.name == "Rose":
+            growth_rate: float = 0.8
+        elif self.name == "Sunflower":
             growth_rate = 2.0
-        elif (self.name == "Cactus"):
+        elif self.name == "Cactus":
             growth_rate = 0.2
         else:
             growth_rate = 0.5
         self.height = round(self.height + growth_rate, 2)
-        self.age += 1
 
-    def weekly_growth(self):
-        return (round(self.height - self.initial_height, 2))
+    def age(self, days: int = 1) -> None:
+        self._age += days
+
+    def weekly_growth(self) -> float:
+        return round(self.height - self.initial_height, 2)
 
 
-plant1: Plant = Plant("Rose", 25.0, 30)
-plant2: Plant = Plant("Sunflower", 80.0, 45)
-plant3: Plant = Plant("Cactus", 15.0, 120)
-print("=== Garden Plant Growth ===")
-plant1.show()
-for day in range(1, 8):
-    print(f"=== Day {day} ===")
-    plant1.grow()
-    plant1.show()
+if __name__ == "__main__":
+    plant: Plant = Plant("Rose", 25.0, 30)
 
-print(f"Growth this week: {plant1.weekly_growth()}cm")
+    print("=== Garden Plant Growth ===")
+    plant.show()
+    for day in range(1, 8):
+        print(f"=== Day {day} ===")
+        plant.grow()
+        plant.age()
+        plant.show()
+
+    print(f"Growth this week: {plant.weekly_growth()}cm")
