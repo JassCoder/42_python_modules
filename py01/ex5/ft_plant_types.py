@@ -130,13 +130,13 @@ if __name__ == "__main__":
     print("[asking the rose to bloom]")
     rose.bloom()
     rose.show()
-
+    print()
     print("=== Tree")
     oak: Tree = Tree("Oak", 200.0, 365, 5.0)
     oak.show()
     print("[asking the oak to produce shade]")
     oak.produce_shade()
-
+    print()
     print("=== Vegetable")
     tomato: Vegetable = Vegetable("Tomato", 5.0, 10, "April")
     tomato.show()

@@ -28,7 +28,10 @@ class Plant:
             print("Height update rejected")
             return
         self._height = float(height)
-        val = int(self._height) if self._height.is_integer() else self._height
+        if self._height.is_integer():
+            val: float = int(self._height)
+        else:
+            val = self._height
         print(f"Height updated: {val}cm")
 
     def set_age(self, age: int) -> None:
@@ -64,8 +67,11 @@ if __name__ == "__main__":
     print("=== Garden Security System ===")
     plant: Plant = Plant("Rose", 15.0, 10)
     plant.show("Plant created: ")
+    print()
     plant.set_height(25)
     plant.set_age(30)
+    print()
     plant.set_height(-5)
     plant.set_age(-10)
+    print()
     plant.show("Current state: ")

@@ -209,7 +209,7 @@ if __name__ == "__main__":
         f"Is 400 days more than a year? -> "
         f"{Plant.is_older_than_year(400)}"
     )
-
+    print()
     print("=== Flower")
     rose: Flower = Flower("Rose", 15.0, 10, "red")
     rose.show()
@@ -219,7 +219,7 @@ if __name__ == "__main__":
     rose.bloom()
     rose.show()
     display_plant_stats(rose)
-
+    print()
     print("=== Tree")
     oak: Tree = Tree("Oak", 200.0, 365, 5.0)
     oak.show()
@@ -227,7 +227,7 @@ if __name__ == "__main__":
     print("[asking the oak to produce shade]")
     oak.produce_shade()
     display_plant_stats(oak)
-
+    print()
     print("=== Seed")
     sunflower: Seed = Seed("Sunflower", 80.0, 45, "yellow", 42)
     sunflower.show()
@@ -237,8 +237,9 @@ if __name__ == "__main__":
     sunflower.bloom()
     sunflower.show()
     display_plant_stats(sunflower)
-
+    print()
     print("=== Anonymous")
     anon: Plant = Plant.anonymous()
     anon.show()
+
     display_plant_stats(anon)
