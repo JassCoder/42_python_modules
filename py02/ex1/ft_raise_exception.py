@@ -40,8 +40,9 @@ def test_temperature() -> None:
 
 
 if __name__ == "__main__":
-    print("=== Garden Temperature ===")
+    print("=== Garden Temperature Checker ===")
     print()
     test_temperature()
     print()
     print("All tests completed - program didn't crash!")
+c
