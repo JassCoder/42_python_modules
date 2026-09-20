@@ -8,13 +8,48 @@ class PlantError(GardenError):
     def __init__(self, message: str = "unknown plant error") -> None:
         super().__init__(message)
 
+
 def water_plant(plant_name: str) -> None:
     if plant_name != plant_name.capitalize():
         raise PlantError(f"Invalid plant name to water: '{plant_name}'")
     print(f"Watering {plant_name}: [OK]")
 
 
-if __name__ == "__main__":
-    water_plant("hello")
+def test_watering_system() -> None:
+    print("Testing valid plants...")
+    print("Opening watering system")
+    try:
+        water_plant("Tomato")
+        water_plant("Lettuce")
+        water_plant("Carrots")
+    except PlantError as error:
+        print(f"Caught PlantError: {error}")
+        print(".. ending tests and returning to main")
+        return
+    finally:
+           print("Closing watering system")
     print()
-    water_plant("Hello")
+    print()
+    print("Testing invalid plants...")
+    print("Opening watering system")
+    try:
+        water_plant("Tomato")
+        water_plant("lettuce")
+        water_plant("Carrots")
+    except PlantError as error:
+        print(f"Caught PlantError: {error}")
+        print(".. ending tests and returning to main")
+        return
+    finally:
+           print("Closing watering system")
+    print()
+    print()
+
+
+if __name__ == "__main__":
+    print("=== Garden Watering System ===")
+    print()
+    test_watering_system()
+    print()
+    print("Cleanup always happens, even with errors!")
+    
