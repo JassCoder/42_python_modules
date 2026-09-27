@@ -16,7 +16,6 @@ def gen_player_achievements() -> set:
     return player
 
 
-
 def main() -> None:
     print("=== Achievement Tracker System ===")
     alice: set = gen_player_achievements()
@@ -24,15 +23,14 @@ def main() -> None:
     charlie: set = gen_player_achievements()
     dylan: set = gen_player_achievements()
     
-    print(f"Player Alice: {alice}")
+    
+    players: list = [("Alice", alice), ("Bob", bob),
+                    ("Charlie", charlie), ("Dylan", dylan)]
+    
+    for name , achievements in players:
+        print(f"Player {name}: {achievements}")
+        print()
     print()
-    print(f"Player Bob: {bob}")
-    print()
-    print(f"Player Charlie: {charlie}")
-    print()
-    print(f"Player Dylan: {dylan}")
-    print()
-
 
 
 if __name__ == "__main__":
