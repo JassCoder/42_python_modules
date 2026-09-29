@@ -31,6 +31,10 @@ def main() -> None:
         print(f"Player {name}: {achievements}")
         print()
     print()
+    distinct_achievements: set = set().union(alice, bob, charlie, dylan)
+    common_achievements: set = set().intersection(alice, bob, charlie, dylan)
+    all_achievements: set = set().union(alice, bob, charlie, dylan)
+    print(f"All distinct achievements: {distinct_achievements}")
 
 
 if __name__ == "__main__":
