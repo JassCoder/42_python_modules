@@ -7,14 +7,16 @@ to list of number i created
 
 
 def value_check(args: list[str]) -> list[int]:
-    try:
-        return [int(x) for x in sys.argv[1:]]
-    except ValueError:
-        for argument in sys.argv[1:]:
-            print(f"Invalid parameter: '{argument}'")
-        print("No scores provided. Usage: "
-              "python3 ft_score_analytics.py <score1> <score2> ...")
-        sys.exit(1)
+    numbers: list[int] = []
+    for x in args:
+        try:
+            numbers.append(int(x))
+        except ValueError:
+            print(f"Invalid parameter: '{x}'")
+            print("No scores provided. Usage: "
+                  "python3 ft_score_analytics.py <score1> <score2> ...")
+            sys.exit(1)
+    return numbers
 
 
 if __name__ == "__main__":
@@ -28,5 +30,5 @@ if __name__ == "__main__":
     print(f"Total players : {len(sys.argv[1:])}")
     print(f"Total score : {sum(int_numbers)}")
     print(f"Average score : {sum(int_numbers) / len(int_numbers)}")
-    print(f"Max score : {max(sys.argv[1:])}")
-    print(f"Min score : {min(sys.argv[1:])}")
+    print(f"Max score : {max(int_numbers)}")
+    print(f"Min score : {min(int_numbers)}")
