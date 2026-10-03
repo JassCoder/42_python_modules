@@ -59,7 +59,6 @@ def second(first: tuple[float, ...]) -> None:
 
 def main() -> None:
     print("=== Game Coordinate System ===")
-    print()
     second(first())
 
 

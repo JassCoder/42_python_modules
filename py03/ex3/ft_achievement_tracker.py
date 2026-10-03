@@ -20,51 +20,44 @@ def gen_player_achievements() -> set[str]:
 
 
 def main() -> None:
-    c = "\033[32m"
-    r = "\033[0m"
     print("=== Achievement Tracker System ===")
     alice: set[str] = gen_player_achievements()
     bob: set[str] = gen_player_achievements()
     charlie: set[str] = gen_player_achievements()
     dylan: set[str] = gen_player_achievements()
-    players: list[tuple[str, set[str]]] = [
-        ("Alice", alice), ("Bob", bob),
-        ("Charlie", charlie), ("Dylan", dylan)
-        ]
-    for name, achievements in players:
-        print(f"Player {name}: {c}{achievements}{r}")
-        print()
-    print()
+
+    print(f"Player Alice: {alice}")
+    print(f"Player Bob: {bob}")
+    print(f"Player Charlie: {charlie}")
+    print(f"Player Dylan: {dylan}")
+
     distinct_achievements: set[str] = alice.union(bob, charlie, dylan)
-    print(f"All distinct achievements: {c}{distinct_achievements}{r}")
-    print()
+    print(f"All distinct achievements: {distinct_achievements}")
+
     common_achievements: set[str] = alice.intersection(bob, charlie, dylan)
-    print(f"Common to all players: {c}{common_achievements}{r}")
-    print()
+    print(f"Common achievements: {common_achievements}")
+
     a_others: set[str] = bob | charlie | dylan
     alice_only: set[str] = alice.difference(a_others)
-    print(f"Only Alice has: {c}{alice_only}{r}")
-    print()
+    print(f"Only Alice has: {alice_only}")
+
     b_others: set[str] = alice | charlie | dylan
     bob_only: set[str] = bob.difference(b_others)
-    print(f"Only Bob has: {c}{bob_only}{r}")
-    print()
+    print(f"Only Bob has: {bob_only}")
+
     c_others: set[str] = bob | alice | dylan
     charlie_only: set[str] = charlie.difference(c_others)
-    print(f"Only Charlie has: {c}{charlie_only}{r}")
-    print()
+    print(f"Only Charlie has: {charlie_only}")
+
     d_others: set[str] = bob | charlie | alice
     dylan_only: set[str] = dylan.difference(d_others)
-    print(f"Only Dylan has: {c}{dylan_only}{r}")
-    print()
-    all: set[str] = set(ACHIEVEMENTS)
-    print(f"Alice is missing: {c}{all.difference(alice)}{r}")
-    print()
-    print(f"Bob is missing: {c}{all.difference(bob)}{r}")
-    print()
-    print(f"Charlie is missing: {c}{all.difference(charlie)}{r}")
-    print()
-    print(f"Dylan is missing: {c}{all.difference(dylan)}{r}")
+    print(f"Only Dylan has: {dylan_only}")
+
+    all_achievements: set[str] = set(ACHIEVEMENTS)
+    print(f"Alice is missing: {all_achievements.difference(alice)}")
+    print(f"Bob is missing: {all_achievements.difference(bob)}")
+    print(f"Charlie is missing: {all_achievements.difference(charlie)}")
+    print(f"Dylan is missing: {all_achievements.difference(dylan)}")
 
 
 if __name__ == "__main__":
