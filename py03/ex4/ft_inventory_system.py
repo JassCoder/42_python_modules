@@ -13,13 +13,15 @@ def parse_inventory(argv):
             print(f"{c}Error - invalid parameter '{arg}'")
             continue
         
-        name, value = arg.split(':', 1)
+    for pair in argv 
+    name, value = arg.split(':', 1)
+        
     
 
 
 def main() -> None:
-    inventory = parse_inventory(sys.argv[1:])
     print("=== Inventory System Analysis ===")
+    inventory = parse_inventory(sys.argv[1:])
     print(f"{c}{inventory}{r}")
 
 
