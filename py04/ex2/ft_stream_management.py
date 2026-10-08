@@ -13,7 +13,8 @@ def main() -> None:
     try:
         f: typing.IO[str] = open(filename, "r")
     except OSError as error:
-        print(f"Error opening file '{filename}': {error}")
+        print(f"[STDERR] Error opening file '{filename}': {error}",
+              file=sys.stderr)
         return
     content: str = f.read()
     print("---")
@@ -45,8 +46,8 @@ def main() -> None:
         out.close()
         print(f"Data saved in file '{new_name}'.")
     except OSError as error:
-        print(f"[STDERR] Error opening file '{new_name}':"
-              f"{error}", file=sys.stderr)
+        print(f"[STDERR] Error opening file '{new_name}': {error}",
+              file=sys.stderr)
         print("Data not saved.")
         return
 
