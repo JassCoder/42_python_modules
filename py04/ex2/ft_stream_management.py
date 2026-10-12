@@ -18,7 +18,7 @@ def main() -> None:
         return
     content: str = f.read()
     print("---")
-    print(content, end="\n")
+    print(content, end="")
     print("---")
     f.close()
     print(f"File '{filename}' closed.")
@@ -30,7 +30,7 @@ def main() -> None:
             transformed += line + "#"
     print("Transform data:")
     print("---")
-    print(transformed, end="\n")
+    print(transformed, end="")
     print("---")
 
     print("Enter new file name (or empty): ", end="")

@@ -38,10 +38,13 @@ def main() -> None:
         print("Not saving data.")
         return
     print(f"Saving data to '{new_name}'")
-    out: typing.IO[str] = open(new_name, "w")
-    out.write(transformed)
-    out.close()
-    print(f"Data saved in file '{new_name}'.")
+    try:
+        out: typing.IO[str] = open(new_name, "w")
+        out.write(transformed)
+        out.close()
+        print(f"Data saved in file '{new_name}'.")
+    except OSError as error:
+        print(f"Error opening file '{new_name}': {error}")
 
 
 if __name__ == "__main__":

@@ -34,7 +34,7 @@ def main() -> None:
     print(secure_archive("/etc/master.passwd"))
 
     print("Using 'secure_archive' to read from a regular file:")
-    result = secure_archive("ancient_fragment.txt")
+    result: tuple[bool, str] = secure_archive("ancient_fragment.txt")
     print(result)
 
     print("Using 'secure_archive' to write previous content to a new file:")
