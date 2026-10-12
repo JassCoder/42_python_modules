@@ -1,0 +1,17 @@
+[project]
+name = "ex0"
+version = "0.1.0"
+description = "The Sealed Laboratory"
+authors = [{ name = "Apprentice", email = "apprentice@example.com" }]
+requires-python = ">=3.10"
+dependencies = [
+    "pandas>=2.0.0",
+    "numpy>=1.25.0",
+]
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
