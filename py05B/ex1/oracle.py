@@ -1,9 +1,14 @@
 import os
-from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
+from dotenv import load_dotenv  # pyright: ignore[reportMissingImports]
+
 
 def main() -> None:
     load_dotenv()
-    environment = os.getenv("MATRIX_MODE", "development")
+    environment: str | None = os.getenv("MATRIX_MODE", "testing")
+    database_url: str | None = os.getenv("DATABASE_URL", None)
+    api_key: str | None = os.getenv("API_KEY", None)
+    log_level: str | None = os.getenv("LOG_LEVEL", None)
+    zion_endpoint: str | None = os.getenv("ZION_ENDPOINT", None)
     print(environment)
 
 
