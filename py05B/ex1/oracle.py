@@ -7,15 +7,15 @@ def main() -> None:
     y = "\033[33m"
     c = "\033[32m"
     load_dotenv()
-    environment: str | None = os.getenv("MATRIX_MODE", None)
+    environment: str = os.getenv("MATRIX_MODE", "development")
     database_url: str | None = os.getenv("DATABASE_URL", None)
     api_key: str | None = os.getenv("API_KEY", None)
-    log_level: str | None = os.getenv("LOG_LEVEL", None)
+    log_level: str = os.getenv("LOG_LEVEL", "INFO")
     zion_endpoint: str | None = os.getenv("ZION_ENDPOINT", None)
-    print(f"Environment  configured: {c}{environment is not None}{r}")
+    print(f"Mode                   : {c}{environment}{r}")
     print(f"Database_url configured: {c}{database_url is not None}{r}")
     print(f"Api_key      configured: {c}{api_key is not None}{r}")
-    print(f"Log_level              : {c}{log_level is not None}{r}")
+    print(f"Log Level              : {c}{log_level}{r}")
     print(f"Zion_endpoint          : {c}{zion_endpoint is not None}{r}")
 
     print()
