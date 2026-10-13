@@ -1,7 +1,10 @@
 import os
+from dotenv import load_dotenv # pyright: ignore[reportMissingImports]
 
 def main() -> None:
-    print(os.getenv("USER"))
+    load_dotenv()
+    environment = os.getenv("MATRIX_MODE", "development")
+    print(environment)
 
 
 if __name__ == "__main__":
