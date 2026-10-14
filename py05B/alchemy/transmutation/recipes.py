@@ -8,6 +8,8 @@ def lead_to_gold() -> str:
     potion: str = strength_potion()
     fire: str = create_fire()
     water: str = create_water()
-    final: str = f"Recipe transmuting Lead to Gold: brew {air} and {potion}"
-    f"brewed with {fire} and {water} mixed with {fire}"
+    final: str = (
+        f"Recipe transmuting Lead to Gold: brew {air} and {potion}"
+        f"brewed with {fire} and {water} mixed with {fire}"
+        )
     return final
