@@ -11,7 +11,7 @@ warnings when configuration is missing.
 It also supports development and production modes.
 """
 import os
-from dotenv import load_dotenv
+import dotenv
 
 
 def main() -> None:
@@ -20,7 +20,7 @@ def main() -> None:
     c = "\033[32m"
     print()
     print(f"ORACLE STATUS: {c}Consulting the configuration...{r}")
-    loaded: bool = load_dotenv()
+    loaded: bool = dotenv.load_dotenv()
     if loaded:
         print(f"{c}[OK] Configuration loaded from .env{r}")
     else:
