@@ -4,11 +4,11 @@ The Oracle: Environment Configuration Checker.
 This module uses python-dotenv to load configuration
 variables from a .env file.
 
-It checks whether the required environment variables
-are configured, provides default values, and displays
+It checks whether the required environment
+variables are configured,
+provides default values, and displays
 warnings when configuration is missing.
-
-It also supports development and production modes. 
+It also supports development and production modes.
 """
 import os
 from dotenv import load_dotenv
@@ -34,10 +34,13 @@ def main() -> None:
     zion_endpoint: str | None = os.getenv("ZION_ENDPOINT", None)
     print()
     print(f"Mode: {c}{environment}{r}")
-    print(f"Database: {c}{'Configured' if database_url else 'Not configured'}{r}")
-    print(f"API Access: {c}{'Key configured' if api_key else 'Key missing'}{r}")
-    print(f"Log Level:{c}{log_level}{r}")
-    print(f"Remote Network:{c}{'Endpoint configured' if zion_endpoint else 'Not configured'}{r}")
+    print(f"Database: {c}"
+          f"{'Configured' if database_url else 'Not configured'}{r}")
+    print(f"API Access: {c}"
+          f"{'Key configured' if api_key else 'Key missing'}{r}")
+    print(f"Log Level: {c}{log_level}{r}")
+    print(f"Remote Network: {c}"
+          f"{'Endpoint configured' if zion_endpoint else 'Not configured'}{r}")
     print()
     print()
     if environment == "development":
@@ -55,6 +58,6 @@ def main() -> None:
     if zion_endpoint is None:
         print(f"{y}WARNING: ZION_ENDPOINT is missing{r}")
 
-
+    print("The Oracle sees all configurations.")
 if __name__ == "__main__":
     main()
