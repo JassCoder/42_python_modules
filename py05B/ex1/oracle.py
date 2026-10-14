@@ -25,6 +25,13 @@ def main() -> None:
         print(f"Oracle running in {c}{environment}{r} mode")
     else:
         print(f"{y}WARNING: Unknown or missing environment mode{r}")
+    print()
+    if database_url is None:
+        print(f"{y}WARNING: DATABASE_URL is missing{r}")
+    if api_key is None:
+        print(f"{y}WARNING: API_KEY is missing{r}")
+    if zion_endpoint is None:
+        print(f"{y}WARNING: ZION_ENDPOINT is missing{r}")
 
 
 if __name__ == "__main__":
