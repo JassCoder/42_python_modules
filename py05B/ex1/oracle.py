@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv  # pyright: ignore[reportMissingImports]
+from dotenv import load_dotenv
 
 
 def main() -> None:
