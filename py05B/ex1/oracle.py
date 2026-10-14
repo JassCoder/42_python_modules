@@ -59,5 +59,7 @@ def main() -> None:
         print(f"{y}WARNING: ZION_ENDPOINT is missing{r}")
 
     print("The Oracle sees all configurations.")
+
+
 if __name__ == "__main__":
     main()
