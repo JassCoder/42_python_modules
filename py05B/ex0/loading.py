@@ -7,13 +7,11 @@ def report(name: str) -> bool:
     try:
         module = importlib.import_module(name)
     except ImportError:
-        c = "\033[33m"
-        print(f"{c}[MISSING] {name}{r}")
+        print(f"[MISSING] {name}")
         print(f" pip install {name}")
         print(f" poetry add {name}")
         return False
-    c = "\033[32m"
-    print(f"{c}[OK] {name} ({getattr(module, '__version__', 'unknown')}){r}")
+    print(f"[OK] {name} ({getattr(module, '__version__', 'unknown')})")
     return True
 
 
@@ -36,6 +34,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    c = "\033[33m"
-    r = "\033[0m"
     main()

@@ -40,38 +40,37 @@ def site_packages_path() -> str:
 def show_sealed() -> None:
     """Output when running inside a virtual environment."""
     print()
-    print(f"LABORATORY STATUS:{c}The laboratory is sealed{r}")
+    print("LABORATORY STATUS: The laboratory is sealed")
     print()
-    print(f"Current Python: {c}{sys.executable}{r}")
-    print(f"Virtual Environment: {c}{venv_name()}{r}")
-    print(f"Environment Path: {c}{sys.prefix}{r}")
+    print(f"Current Python: {sys.executable}")
+    print(f"Virtual Environment: {venv_name()}")
+    print(f"Environment Path: {sys.prefix}")
     print()
-    print(f"SUCCESS:{c}You are working in an isolated environment!{r}")
+    print("SUCCESS: You are working in an isolated environment!")
     print("Safe to install reagents without affecting the global system.")
     print()
     print("Reagent installation path:")
-    print(f"{c}{site_packages_path()}{r}")
+    print(f"{site_packages_path()}")
 
 
 def show_open() -> None:
     """Output when running in the global environment."""
-    c = "\033[33m"
     print()
     print("LABORATORY STATUS: You are working in the open")
     print()
-    print(f"Current Python: {c}{sys.executable}{r}")
-    print(f"Virtual Environment: {c}None detected{r}")
+    print(f"Current Python: {sys.executable}")
+    print("Virtual Environment: None detected")
     print()
-    print(f"WARNING: {c}You are in the global environment!{r}")
+    print("WARNING: You are in the global environment!")
     print("Every reagent you install here leaks into the whole system.")
     print()
-    print(f"To seal the laboratory, run:{c}")
+    print("To seal the laboratory, run:")
     print("python3 -m venv lab_env")
     print("source lab_env/bin/activate   # On Unix")
     print("lab_env\\Scripts\\activate      # On Windows")
     print()
     print()
-    print(f"Then run this program again.{r}")
+    print("Then run this program again.")
 
 
 def main() -> None:
@@ -83,6 +82,4 @@ def main() -> None:
 
 
 if __name__ == "__main__":
-    c = "\033[32m"
-    r = "\033[0m"
     main()
