@@ -15,17 +15,14 @@ import dotenv
 
 
 def main() -> None:
-    r = "\033[0m"
-    y = "\033[33m"
-    c = "\033[32m"
     print()
-    print(f"ORACLE STATUS: {c}Consulting the configuration...{r}")
+    print("ORACLE STATUS: Consulting the configuration...")
     loaded: bool = dotenv.load_dotenv()
     if loaded:
-        print(f"{c}[OK] Configuration loaded from .env{r}")
+        print("[OK] Configuration loaded from .env")
     else:
-        print(f"{y}[WARNING] No configuration loaded from .env{r}")
-        print(f"{y}Using environment variables or default values.{r}")
+        print("[WARNING] No configuration loaded from .env")
+        print("Using environment variables or default values.")
     print()
     environment: str = os.getenv("MATRIX_MODE", "development")
     database_url: str | None = os.getenv("DATABASE_URL", None)
@@ -33,30 +30,30 @@ def main() -> None:
     log_level: str = os.getenv("LOG_LEVEL", "INFO")
     zion_endpoint: str | None = os.getenv("ZION_ENDPOINT", None)
     print()
-    print(f"Mode: {c}{environment}{r}")
-    print(f"Database: {c}"
-          f"{'Configured' if database_url else 'Not configured'}{r}")
-    print(f"API Access: {c}"
-          f"{'Key configured' if api_key else 'Key missing'}{r}")
-    print(f"Log Level: {c}{log_level}{r}")
-    print(f"Remote Network: {c}"
-          f"{'Endpoint configured' if zion_endpoint else 'Not configured'}{r}")
+    print(f"Mode: {environment}")
+    print(f"Database: "
+          f"{'Configured' if database_url else 'Not configured'}")
+    print(f"API Access: "
+          f"{'Key configured' if api_key else 'Key missing'}")
+    print(f"Log Level: {log_level}")
+    print(f"Remote Network: "
+          f"{'Endpoint configured' if zion_endpoint else 'Not configured'}")
     print()
     print()
     if environment == "development":
-        print(f"Oracle running in {c}{environment}{r} mode")
+        print(f"Oracle running in {environment} mode")
     elif environment == "production":
-        print(f"Oracle running in {c}{environment}{r} mode")
+        print(f"Oracle running in {environment} mode")
     else:
-        print(f"{y}WARNING: Unknown or missing environment mode{r}")
+        print("WARNING: Unknown or missing environment mode")
     print()
     print()
     if database_url is None:
-        print(f"{y}WARNING: DATABASE_URL is missing{r}")
+        print("WARNING: DATABASE_URL is missing")
     if api_key is None:
-        print(f"{y}WARNING: API_KEY is missing{r}")
+        print("WARNING: API_KEY is missing")
     if zion_endpoint is None:
-        print(f"{y}WARNING: ZION_ENDPOINT is missing{r}")
+        print("WARNING: ZION_ENDPOINT is missing")
 
     print("The Oracle sees all configurations.")
 
