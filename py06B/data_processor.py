@@ -84,6 +84,7 @@ class TextProcessor(DataProcessor):
         # * passing list to _store
         self._store(values)
 
+
 class LogProcessor(DataProcessor):
     """Processor that accepts dicts with str keys and str values."""
 
@@ -94,16 +95,16 @@ class LogProcessor(DataProcessor):
             isinstance(key, str) and isinstance(value, str)
             for key, value in entry.items()
             )
-    
+
     def validate(self, data: Any) -> bool:
         if isinstance(data, dict):
             return self._is_log_entry(data)
-        
-        if isinstance(data , list):
+
+        if isinstance(data, list):
             return all(self._is_log_entry(item) for item in data)
-        
+
         return False
-        
+
     def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
         if not self.validate(data):
             raise ValueError("Invalid Data")
