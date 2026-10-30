@@ -37,4 +37,12 @@ class DataProcessor(ABC):
 class NumericProcessor(DataProcessor):
 
     def validate(self, data: Any) -> bool:
-        pass
+        
+        if isinstance(data, int):
+            return True
+        
+        if isinstance(data, list):
+            return all(isinstance(xyz, int) for xyz in data)
+        
+        return False
+    
