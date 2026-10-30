@@ -87,6 +87,9 @@ class TextProcessor(DataProcessor):
 class LogProcessor(DataProcessor):
     """Processor that accepts dicts with str keys and str values."""
 
+    def _is_log_entry(self, entry: Any) -> bool:
+        
+    
     def validate(self, data: Any) -> bool:
         if not isinstance(data, dict):
             return False
