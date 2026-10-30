@@ -1,3 +1,4 @@
+"""Plugin interface and CSV exporter for (rank, value) streams."""
 from typing import Protocol
 
 
@@ -12,8 +13,8 @@ class CsvPlugin:
         csv_line = ", ".join(values)
         print("CSV out:")
         print(csv_line)
-        
-        
+
+
 class ExportPlugin(Protocol):
     def process_output(self, data: list[tuple[int, str]]) -> None:
         pass
