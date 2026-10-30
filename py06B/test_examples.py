@@ -26,7 +26,18 @@ class ShoppingBasket:
     def __init__(self) -> None:
         self.items: list[str] = []
         
+    def validate(self, fruit: str | list[str]) -> bool:
+        
+        if isinstance(fruit, str):
+            return True
+        if isinstance(fruit, list):
+            return all(isinstance(age, int) for age in fruit)
+        
+        return False 
+        
     def add(self, fruit: str | list[str]) -> None:
+        if not self.validate(fruit):
+            raise ValueError("invalid input")
         if isinstance(fruit, list):
             fruits = fruit
         else:
