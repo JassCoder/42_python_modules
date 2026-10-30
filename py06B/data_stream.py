@@ -14,7 +14,10 @@ class DataStream:
         for element in stream:
             for processor in self._processors:
                 if processor.validate(element):
-                    processor.ingest(element)
+                    try:
+                        processor.ingest(element)
+                    except ValueError as error:
+                        print(f"Ingestion error: {error}")
                     break
             else:
                 print(f"No processor accepted: {element!r}")
