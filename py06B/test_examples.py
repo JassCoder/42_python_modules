@@ -31,7 +31,7 @@ class ShoppingBasket:
         if isinstance(fruit, str):
             return True
         if isinstance(fruit, list):
-            return all(isinstance(age, int) for age in fruit)
+            return all(isinstance(item, str) for item in fruit)
         
         return False 
         
@@ -52,6 +52,6 @@ basket = ShoppingBasket()
 basket.add("apple")
 basket.add(["banana", "mango"])
 basket.add(["banana1", "mango1"])
-basket.add([123, "mango"])
+# basket.add([123, "mango"])
 
 print(basket.items)

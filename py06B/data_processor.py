@@ -46,5 +46,12 @@ class NumericProcessor(DataProcessor):
         return False
 
     def ingest(self, data: int | float | list[int | float]) -> None:
-        def __init__(self) -> None:
-            self.items: list[str]
+        if not self.validate(data):
+            raise ValueError("Invalid Numeric input")
+        #* checking data is in list or not
+        if isinstance(data, list):
+            numbers = data
+        else:
+            numbers = [data]
+        for item in numbers:
+            self.data.append(str(item))
