@@ -1,6 +1,20 @@
+from typing import Any
 from data_processor import DataProcessor
 
+
 class DataStream:
-    
+
     def __init__(self) -> None:
-        self._database: list[tuple[int, str]] = []
+        self._processors: list[DataProcessor] = []
+
+    def register_processor(self, processor: DataProcessor) -> None:
+        self._processors.append(processor)
+
+    def process_stream(self, stream: list[Any]) -> None:
+        for element in stream:
+            for processor in self._processors:
+                if processor.validate(element):
+                    processor.ingest(element)
+                    break
+            else:
+                print(f"No processor accepted: {element!r}")
