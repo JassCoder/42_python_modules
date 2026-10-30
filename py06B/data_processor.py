@@ -18,19 +18,19 @@ class DataProcessor(ABC):
         self._next_rank: int = 0
 
     def output(self) -> tuple[int, str]:
-        #* Handle empty storage
+        # * Handle empty storage
         if not self._pending:
             raise IndexError("output() called on empty storage")
-        #* Remove the oldest item ->
-        #* using pop() with index zero means oldest entry
+        # * Remove the oldest item ->
+        # * using pop() with index zero means oldest entry
         item = self._pending.pop(0)
         return item
 
     def _store(self, values: list[str]) -> None:
         for value in values:
-            #* Store each value with its current rank
+            # * Store each value with its current rank
             self._pending.append((self._next_rank, value))
-            #* Increase the rank for the next value
+            # * Increase the rank for the next value
             self._next_rank += 1
 
 
@@ -38,21 +38,21 @@ class NumericProcessor(DataProcessor):
     """Processor that accepts ints, floats, or lists thereof."""
 
     def validate(self, data: Any) -> bool:
-        #* Check if the input is a single integer or float
+        # * Check if the input is a single integer or float
         if isinstance(data, (int, float)):
             return True
-        #* Check if every element in the list is numeric
+        # * Check if every element in the list is numeric
         if isinstance(data, list):
             return all(
                 isinstance(xyz, (int, float)) for xyz in data
             )
-        #* Reject unsupported data types
+        # * Reject unsupported data types
         return False
 
     def ingest(self, data: int | float | list[int | float]) -> None:
         if not self.validate(data):
             raise ValueError("Invalid Numeric input")
-        #* checking data is in list or not
+        # * checking data is in list or not
         if isinstance(data, list):
             numbers = data
         else:
@@ -66,20 +66,20 @@ class TextProcessor(DataProcessor):
 
     # ? Validition
     def validate(self, data: Any) -> bool:
-        #* checking a single string
+        # * checking a single string
         if isinstance(data, str):
             return True
-        #* checking a list containing only str
+        # * checking a list containing only str
         if isinstance(data, list):
             return all(isinstance(xyz, str) for xyz in data)
-        #* Rejects anything else
+        # * Rejects anything else
         return False
 
     def ingest(self, data: str | list[str]) -> None:
-        #* validating...
+        # * validating...
         if not self.validate(data):
             raise ValueError("Innvalid Data")
-        #* Normalize single input into a list
+        # * Normalize single input into a list
         values = [data] if isinstance(data, str) else data
-        #* passing list to _store
+        # * passing list to _store
         self._store(values)
