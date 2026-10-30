@@ -83,3 +83,17 @@ class TextProcessor(DataProcessor):
         values = [data] if isinstance(data, str) else data
         # * passing list to _store
         self._store(values)
+
+class LogProcessor(DataProcessor):
+    """Processor that accepts dicts with str keys and str values."""
+
+    def validate(self, data: Any) -> bool:
+        if not isinstance(data, dict):
+            return False
+        return all(
+            isinstance(key, str) and isinstance(value, str)
+            for key, value in data.items()
+        )
+        
+    def ingest(self, data: Any) -> None:
+        
