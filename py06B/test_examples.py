@@ -1,50 +1,47 @@
-# from typing import Any
-
-# # ! practice for data processor 
-
-# class AgeChecker:
-    
-#     def validate(self, data: Any) -> bool:
-#         if isinstance(data, int):
-#             return True
-        
-#         if isinstance(data, list):
-#             return all(isinstance(age, int) for age in data)
-        
-#         return False
+# ! practice for data processor
+from typing import Any
 
 
-# checker = AgeChecker()
+class AgeChecker:
 
-# print(checker.validate(20))
-# print(checker.validate([18, 21]))
-# print(checker.validate("twenty"))
-# print(checker.validate([18, "X"]))
+    def validate(self, data: Any) -> bool:
+        if isinstance(data, int) and not isinstance(data, bool):
+            return True
+        if isinstance(data, list):
+            return all(
+                isinstance(age, int) and not isinstance(age, bool)
+                for age in data
+            )
+        return False
 
-# ! for numeric ingestion
+
+checker = AgeChecker()
+
+print(checker.validate(20))          # True
+print(checker.validate([18, 21]))    # True
+print(checker.validate("twenty"))    # False
+print(checker.validate([18, "X"]))   # False
+print(checker.validate(True))        # False (with the bool guard)
+
+
+# ! for text ingestion (basket of fruit names)
 class ShoppingBasket:
+
     def __init__(self) -> None:
         self.items: list[str] = []
-        
-    def validate(self, fruit: str | list[str]) -> bool:
-        
-        if isinstance(fruit, str):
+
+    def validate(self, data: str | list[str]) -> bool:
+        if isinstance(data, str):
             return True
-        if isinstance(fruit, list):
-            return all(isinstance(item, str) for item in fruit)
-        
-        return False 
-        
-    def add(self, fruit: str | list[str]) -> None:
-        if not self.validate(fruit):
+        if isinstance(data, list):
+            return all(isinstance(item, str) for item in data)
+        return False
+
+    def add(self, data: str | list[str]) -> None:
+        if not self.validate(data):
             raise ValueError("invalid input")
-        if isinstance(fruit, list):
-            fruits = fruit
-        else:
-            fruits = [fruit]
-        for item in fruits:
-            self.items.append(item)
-        
+        fruits = data if isinstance(data, list) else [data]
+        self.items.extend(fruits)
 
 
 basket = ShoppingBasket()
@@ -52,6 +49,6 @@ basket = ShoppingBasket()
 basket.add("apple")
 basket.add(["banana", "mango"])
 basket.add(["banana1", "mango1"])
-# basket.add([123, "mango"])
 
 print(basket.items)
+# ['apple', 'banana', 'mango', 'banana1', 'mango1']
