@@ -25,4 +25,16 @@ class DataProcessor(ABC):
         item = self._pending.pop(0)
         return item
 
+    def _store(self, value: list[str]) -> None:
+        for value in values:
+            #  ! Append (Ranks , value ) to self._pending
+            self._pending.append((self._next_rank, value))
+            #  ! Increament slef._next_rank by 1
+            self._next_rank += 1
+
+
+#  !
+class NumericProcessor(DataProcessor):
     
+    def validate(self, data: Any) -> bool:
+        pass
