@@ -2,7 +2,9 @@
 from typing import Protocol
 
 
-data = [(0, "apple"), (1, "banana"), (2, "orange")]
+class ExportPlugin(Protocol):
+    def process_output(self, data: list[tuple[int, str]]) -> None:
+        pass
 
 
 class CsvPlugin:
@@ -10,14 +12,22 @@ class CsvPlugin:
 
     def process_output(self, data: list[tuple[int, str]]) -> None:
         values = [value for _rank, value in data]
-        csv_line = ", ".join(values)
-        print("CSV out:")
+        csv_line = ",".join(values)
+        print("CSV Output:")
         print(csv_line)
 
 
-class ExportPlugin(Protocol):
+class JsonPlugin:
+    """Exports (rank, value) pairs as a JSON array of objects."""
+
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        pass
+        records = [
+            f'{{"rank": {rank}, "value": "{_escape(value)}"}}'
+            for rank, value in data
+        ]
+        json_text = "[" + ", ".join(records) + "]"
+        print("JSON Output:")
+        print(json_text)
 
 
 if __name__ == "__main__":
