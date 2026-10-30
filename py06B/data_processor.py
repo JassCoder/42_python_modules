@@ -44,3 +44,7 @@ class NumericProcessor(DataProcessor):
             return all(isinstance(xyz, (int, float)) for xyz in data)
         # * Reject unsupported data types
         return False
+
+    def ingest(self, data: int | float | list[int | float]) -> None:
+        def __init__(self) -> None:
+            self.items: list[str]
