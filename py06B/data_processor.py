@@ -109,8 +109,7 @@ class LogProcessor(DataProcessor):
             raise ValueError("Invalid Data")
         records = data if isinstance(data, list) else [data]
         items = [
-        f"{key}={value}"
-        for record in records
-        for key, value in record.items()
+            ", ".join(f"{key}={value}" for key, value in record.items())
+            for record in records
         ]
         self._store(items)
