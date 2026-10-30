@@ -42,7 +42,7 @@ class NumericProcessor(DataProcessor):
             return True
         
         if isinstance(data, list):
-            return all(isinstance(xyz, int) for xyz in data)
+            return all(isinstance(xyz, (int , float)) for xyz in data)
         
         return False
     
