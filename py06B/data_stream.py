@@ -21,3 +21,9 @@ class DataStream:
                     break
             else:
                 print(f"No processor accepted: {element!r}")
+
+    def print_processor_stats(self) -> None:
+        for processor in self._processors:
+            print(type(processor).__name__)
+            print(processor._next_rank)
+            print(len(processor._pending))
