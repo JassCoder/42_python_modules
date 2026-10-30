@@ -104,5 +104,13 @@ class LogProcessor(DataProcessor):
         
         return False
         
-    def ingest(self, data: Any) -> None:
-        pass
+    def ingest(self, data: dict[str, str] | list[dict[str, str]]) -> None:
+        if not self.validate(data):
+            raise ValueError("Invalid Data")
+        records = data if isinstance(data, list) else [data]
+        items = [
+        f"{key}={value}"
+        for record in records
+        for key, value in record.items()
+        ]
+        self._store(items)
