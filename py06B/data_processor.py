@@ -97,11 +97,12 @@ class LogProcessor(DataProcessor):
     
     def validate(self, data: Any) -> bool:
         if not isinstance(data, dict):
-            return False
-        return all(
-            isinstance(key, str) and isinstance(value, str)
-            for key, value in data.items()
-        )
+            return self._is_log_entry(data)
+        
+        if not isinstance(data , list):
+            return all(self._is_log_entry(item) for item in data)
+        
+        return False
         
     def ingest(self, data: Any) -> None:
-        
+        pass
