@@ -26,4 +26,4 @@ class DataStream:
         for processor in self._processors:
             print(type(processor).__name__)
             print(processor.total_processed)
-            print(len(processor.remaining()))
+            print(processor.remaining)
