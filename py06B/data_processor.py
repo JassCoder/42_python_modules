@@ -27,20 +27,20 @@ class DataProcessor(ABC):
 
     def _store(self, values: list[str]) -> None:
         for value in values:
+            #  * Store each value with its current rank
             self._pending.append((self._next_rank, value))
+            #  * Increase the rank for the next value
             self._next_rank += 1
-            #  * Append (Ranks , value ) to self._pending
-            #  * Increament slef._next_rank by 1
 
 
 class NumericProcessor(DataProcessor):
 
     def validate(self, data: Any) -> bool:
-        # * here we are checking one value at once.
+        # * Check if the input is a single integer or float
         if isinstance(data, (int, float)):
             return True
-        # * here we are checking values at inside data using all()
+        # * Check if every element in the list is numeric
         if isinstance(data, list):
             return all(isinstance(xyz, (int, float)) for xyz in data)
-        # * if our f(x) not validate as numeric return False
+        # * Reject unsupported data types
         return False
