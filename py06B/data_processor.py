@@ -32,7 +32,7 @@ class DataProcessor(ABC):
             self._pending.append((self._next_rank, value))
             # * Increase the rank for the next value
             self._next_rank += 1
-    
+
     @property
     def total_processed(self) -> int:
         return self._next_rank
@@ -122,5 +122,3 @@ class LogProcessor(DataProcessor):
             for record in records
         ]
         self._store(items)
-
-

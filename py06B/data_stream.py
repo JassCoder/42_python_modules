@@ -22,9 +22,8 @@ class DataStream:
             else:
                 print(f"No processor accepted: {element!r}")
 
-    
     def print_processors_stats(self) -> None:
         for processor in self._processors:
             print(type(processor).__name__)
             print(processor.total_processed)
-            print(len(processor.remaining))
+            print(len(processor.remaining()))
