@@ -53,5 +53,13 @@ class NumericProcessor(DataProcessor):
             numbers = data
         else:
             numbers = [data]
-        for item in numbers:
-            self.data.append(str(item))
+        converted = [str(item) for item in numbers]
+        self._store(converted)
+
+
+processor = NumericProcessor()
+processor.ingest([10, 2.5, 30])
+
+print(processor.output())
+print(processor.output())
+print(processor.output())
