@@ -11,6 +11,9 @@ class CsvPlugin:
         for rank, value in data:
             values.append(value)
         
+        csv_line = ", ".join(values)
+        print("CSV out:")
+        print(csv_line)
         
         
 class ExportPlugin(Protocol):
