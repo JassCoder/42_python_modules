@@ -1,20 +1,22 @@
-from typing import Any
+# from typing import Any
 
-class AgeChecker:
+# # ! practice for data processor 
+
+# class AgeChecker:
     
-    def validate(self, data: Any) -> bool:
-        if isinstance(data, int):
-            return True
+#     def validate(self, data: Any) -> bool:
+#         if isinstance(data, int):
+#             return True
         
-        if isinstance(data, list):
-            return all(isinstance(age, int) for age in data)
+#         if isinstance(data, list):
+#             return all(isinstance(age, int) for age in data)
         
-        return False
+#         return False
 
 
-checker = AgeChecker()
+# checker = AgeChecker()
 
-print(checker.validate(20))
-print(checker.validate([18, 21]))
-print(checker.validate("twenty"))
-print(checker.validate([18, "X"]))
+# print(checker.validate(20))
+# print(checker.validate([18, 21]))
+# print(checker.validate("twenty"))
+# print(checker.validate([18, "X"]))
