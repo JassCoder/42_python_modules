@@ -24,7 +24,7 @@ class Flameling(Creature):
         return "Flameling uses Ember!"
 
 
-class Pyrodron(Creature):
+class Pyrodon(Creature):
     def __init__(self) -> None:
         super().__init__("Pyrodon", "Fire/Flying")
 
