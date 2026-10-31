@@ -1,0 +1,16 @@
+from abc import ABC, abstractmethod
+
+
+class TransformCapability(ABC):
+    """Abstract ability for creatures that can transform."""
+
+    def __init__(self) -> None:
+        self.is_transformed = False
+
+    @abstractmethod
+    def transform(self) -> str:
+        pass
+
+    @abstractmethod
+    def revert(self) -> str:
+        pass
