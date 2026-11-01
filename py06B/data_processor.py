@@ -118,7 +118,45 @@ class LogProcessor(DataProcessor):
             raise ValueError("Invalid Data")
         records = data if isinstance(data, list) else [data]
         items = [
-            ", ".join(f"{key}={value}" for key, value in record.items())
+            (
+                f"{record['log_level']}: {record['log_message']}"
+                if "log_level" in record and "log_message" in record
+                else ", ".join(
+                    f"{key}={value}" for key, value in record.items()
+                )
+            )
             for record in records
         ]
         self._store(items)
+
+
+if __name__ == "__main__":
+    print("=== Code Nexus - Data Processor ===")
+
+    numeric = NumericProcessor()
+    text = TextProcessor()
+    logs = LogProcessor()
+
+    print("Testing Numeric Processor...")
+    print(numeric.validate(42))
+    print(numeric.validate("Hello"))
+
+    try:
+        numeric.ingest("foo")  # type: ignore[arg-type]
+    except ValueError as error:
+        print(f"Got exception: {error}")
+
+    numeric.ingest([1, 2, 3])
+    for _ in range(3):
+        print(numeric.output())
+
+    print("Testing Text Processor...")
+    text.ingest(["Hello", "Nexus", "World"])
+    print(text.output())
+
+    print("Testing Log Processor...")
+    logs.ingest({
+        "log_level": "NOTICE",
+        "log_message": "Connection to server"
+    })
+    print(logs.output())

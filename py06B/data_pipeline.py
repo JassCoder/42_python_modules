@@ -8,11 +8,17 @@ class ExportPlugin(Protocol):
         pass
 
 
+    def escape_csv(value: str) -> str:
+        if any(char in value for char in ',\"\n\r'):
+            return '"' + value.replace('"', '""') + '"'
+        return value
+
+
 class CsvPlugin:
     """Exports (rank, value) pairs as a single comma-separated line."""
 
     def process_output(self, data: list[tuple[int, str]]) -> None:
-        values = [value for _rank, value in data]
+        values = [escape_csv(value) for _rank, value in data]
         csv_line = ",".join(values)
         print("CSV Output:")
         print(csv_line)
@@ -20,10 +26,33 @@ class CsvPlugin:
 
 class JsonPlugin:
     """Exports (rank, value) pairs as a JSON object."""
+    
+    def escape_json(value: str) -> str:
+    result = ""
+
+    for char in value:
+        code = ord(char)
+
+        if char == '"':
+            result += '\\"'
+        elif char == "\\":
+            result += "\\\\"
+        elif char == "\n":
+            result += "\\n"
+        elif char == "\r":
+            result += "\\r"
+        elif char == "\t":
+            result += "\\t"
+        elif code < 32:
+            result += f"\\u{code:04x}"
+        else:
+            result += char
+
+    return result
 
     def process_output(self, data: list[tuple[int, str]]) -> None:
         records = [
-            f'"item_{rank}": "{value}"'
+            f'"item_{rank}": "{escape_json(value)}"'
             for rank, value in data
         ]
 
