@@ -10,3 +10,20 @@ class SpaceStation(BaseModel):
     last_maintenance: datetime
     is_operational: bool = True
     notes: str | None = Field(default=None, max_length=200)
+
+
+def main() -> None:
+    station = SpaceStation(
+        station_id="ISS001",
+        name="International Space Station",
+        crew_size=6,
+        power_level=85.5,
+        oxygen_level=92.3,
+        last_maintenance=datetime(2024, 1, 15, 8, 30)
+    )
+    
+    print(station)
+
+
+if __name__ == "__main__":
+    main()
