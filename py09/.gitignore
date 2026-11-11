@@ -1,2 +1,5 @@
 .priv
 py09.pdf
+test_py09.py
+.mypy_cache
+*__pycache__
